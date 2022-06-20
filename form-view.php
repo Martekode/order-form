@@ -9,11 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"
           rel="stylesheet"/>
-    <title>Your fancy store</title>
+    <title>Kodesco</title>
 </head>
 <body>
 <div class="container">
-    <h1>Place your order</h1>
+    <h1 style="text-align:center; margin-bottom:2em; margin-top:2em;">Welcome to Kodesco</h1>
+    <h2>Place your order</h2>
     <?php // Navigation for when you need it ?>
     <?php /*
     <nav>
