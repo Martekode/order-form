@@ -63,14 +63,26 @@ function emptyCheck(){
     var_dump($_POST);
     foreach($_POST as $key => $value){
         if($value == ""){
-            echo "lala";
+            $valid = false;
+            return $valid;
+        }else{
+            $valid= true;
+            return $valid;
         }
     }
     
 }
+function isValid($validator){
+    if($validator){
+        echo "everything is ready for process";
+    }else{
+        echo "noooooooooooooooooooooooooooooob";
+    }
+}
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
-    emptyCheck();
+    $valid = emptyCheck();
+    isValid($valid);
     
 }
 require 'form-view.php';
