@@ -74,7 +74,16 @@
 
         <button name="btn" type="submit" class="btn btn-primary">Order!</button>
     </form>
-
+    <div class="col-md-6">
+        <h2>Your order:</h2>
+        <tbody>
+            <?php
+            foreach ($orderData as $shipmentDetails => $shipmentDetailsValue): ?>
+                <h3><?= $shipmentDetails ?></h3>
+                <p><?= $shipmentDetailsValue ?></p>
+            <?php endforeach; ?>
+        </tbody>
+    </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
 

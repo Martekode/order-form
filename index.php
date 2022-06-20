@@ -74,7 +74,12 @@ function emptyCheck(){
 }
 function isValid($validator){
     if($validator){
+        $shipmentArray =[];
         echo "everything is ready for process";
+        foreach($_POST as $key => $value){
+            $shipmentArray[$key]=$value;
+        }
+        return $shipmentArray;
     }else{
         echo "noooooooooooooooooooooooooooooob";
     }
@@ -82,7 +87,7 @@ function isValid($validator){
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
     $valid = emptyCheck();
-    isValid($valid);
+    $orderData = isValid($valid);
     
 }
 require 'form-view.php';
