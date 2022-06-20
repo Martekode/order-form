@@ -69,6 +69,7 @@ function emptyCheck(){
     
 }
 if(isset($_POST['btn'])) {
+    $_POST['btn'] = "clicked";
     emptyCheck();
     
 }
