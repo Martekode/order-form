@@ -91,6 +91,5 @@ if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
     $valid = emptyCheck();
     $orderData = isValid($valid);
-    
 }
 require 'form-view.php';
