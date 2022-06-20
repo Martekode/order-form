@@ -64,6 +64,7 @@ function emptyCheck(){
     foreach($_POST as $key => $value){
         if($value == ""){
             $valid = false;
+            echo "fill in the forms!!";
             return $valid;
         }else{
             $valid= true;
@@ -79,9 +80,11 @@ function isValid($validator){
         foreach($_POST as $key => $value){
             $shipmentArray[$key]=$value;
         }
+        unset($shipmentArray['btn']);
         return $shipmentArray;
     }else{
-        echo "noooooooooooooooooooooooooooooob";
+        $shipmentArray['select your items']='and fill in the form';
+        return $shipmentArray;
     }
 }
 if(isset($_POST['btn'])) {
