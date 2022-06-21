@@ -75,11 +75,17 @@
         <button name="btn" type="submit" class="btn btn-primary">Order!</button>
     </form>
     <div class="col-md-6">
-        <h2>Your order:</h2>
+        <h2>Your Address:</h2>
         <p><em style="font-weight:bold;">Email: </em><?= $orderData['email']?></p>
         <p><em style="font-weight:bold;">Street: </em><?= $orderData['street'] . ", ". $orderData['streetnumber']?></p>
         <p><em style="font-weight:bold;">City: </em><?= $orderData['city'] . ", " . $orderData['zipcode']?></p>
-                
+        <h2>Your selected items:</h1>
+        <ul>
+            <?php foreach ($orderData['products'] as $i => $order): ?>
+                <li><?=$order?></li>
+            <?php endforeach; ?>
+        </ul>
+
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
