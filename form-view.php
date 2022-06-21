@@ -67,7 +67,7 @@
             <?php foreach ($products as $i => $product): ?>
                 <label>
 					<?php // <?= is equal to <?php echo ?>
-                    <input type="checkbox" value="<?=$product['name'] ?>" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
+                    <input type="checkbox" value="<?=$product['name'] . ": " . $product['price']?>" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
                     &euro; <?= number_format($product['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
@@ -85,7 +85,7 @@
                 <li><?=$order?></li>
             <?php endforeach; ?>
         </ul>
-
+        <h1>€ <?=$price?></h1>
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>

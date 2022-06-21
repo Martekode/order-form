@@ -87,9 +87,21 @@ function isValid($validator){
         return $shipmentArray;
     }
 }
+function priceCalc($array,$prod){
+    $price = 0;
+    if($array){
+        foreach($array as $key => $value){
+            $price += $prod[$key]['price'];
+        }
+        return $price;
+    }
+    $price = 0;
+    return $price;
+}
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
     $valid = emptyCheck();
     $orderData = isValid($valid);
+    $price = priceCalc($orderData['products'],$products);
 }
 require 'form-view.php';
