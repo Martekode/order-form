@@ -12,6 +12,7 @@
     <title>Kodesco</title>
 </head>
 <body>
+
 <div class="container">
     <h1 style="text-align:center; margin-bottom:2em; margin-top:2em;">Welcome to Kodesco</h1>
     <h2>Place your order</h2>
@@ -76,16 +77,18 @@
     </form>
     <div class="col-md-6">
         <h2>Your Address:</h2>
-        <p><em style="font-weight:bold;">Email: </em><?= $orderData['email']?></p>
-        <p><em style="font-weight:bold;">Street: </em><?= $orderData['street'] . ", ". $orderData['streetnumber']?></p>
-        <p><em style="font-weight:bold;">City: </em><?= $orderData['city'] . ", " . $orderData['zipcode']?></p>
+
+        <p><em style="font-weight:bold;">Email: </em><?php if(isset($_POST['btn'])){ echo $orderData['email']; }?></p>
+        <p><em style="font-weight:bold;">Street: </em><?php if(isset($_POST['btn'])){echo $orderData['street'] . ", ". $orderData['streetnumber'];}?></p>
+        <p><em style="font-weight:bold;">City: </em><?php if(isset($_POST['btn'])){echo $orderData['city'] . ", " . $orderData['zipcode'];}?></p>
         <h2>Your selected items:</h1>
         <ul>
-            <?php foreach ($orderData['products'] as $i => $order): ?>
-                <li><?=$order?></li>
-            <?php endforeach; ?>
+            <?php if(isset($_POST['btn'])){foreach ($orderData['products'] as $i => $order): ?>
+                <li><?php echo $order;?></li>
+            <?php endforeach;} ?>
+            
         </ul>
-        <h1>€ <?=$price?></h1>
+        <h1 style="color:green;">€ <?php if(isset($_POST['btn'])){echo $price;}?></h1>
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
