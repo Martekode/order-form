@@ -76,13 +76,10 @@
     </form>
     <div class="col-md-6">
         <h2>Your order:</h2>
-        <tbody>
-            <?php
-            foreach ($orderData as $shipmentDetails => $shipmentDetailsValue): ?>
-                <h3><?= $shipmentDetails ?></h3>
-                <p><?= $shipmentDetailsValue ?></p>
-            <?php endforeach; ?>
-        </tbody>
+        <p><em style="font-weight:bold;">Email: </em><?= $orderData['email']?></p>
+        <p><em style="font-weight:bold;">Street: </em><?= $orderData['street'] . ", ". $orderData['streetnumber']?></p>
+        <p><em style="font-weight:bold;">City: </em><?= $orderData['city'] . ", " . $orderData['zipcode']?></p>
+                
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
