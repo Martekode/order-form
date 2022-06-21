@@ -67,10 +67,8 @@ function emptyCheck($email){
             $valid['error']='The forms are empty. Fill in the forms!!';
             return $valid;
         }elseif($_POST['email'] !== ""){
-            $count =0;
             $success = false;
             foreach($validEmailExtention as $value){
-                $count++;
                 if(strpos($email,$value)>-1){
                     $success = true;
                 }
