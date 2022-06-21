@@ -59,14 +59,14 @@ $totalValue = 0;
 $valid = [];
 function emptyCheck($email){
     var_dump($_POST);
-    $validEmailExtention = [".com",".be",".org"];
-    $emailMustContain = ["@hotmail","@yahoo","@outlook","@becode"];
+    #$validEmailExtention = [".com",".be",".org"];
+    #$emailMustContain = ["@hotmail","@yahoo","@outlook","@becode"];
     foreach($_POST as $key => $value){
         if($value == ""){
             $valid['bool']=false;
             $valid['error']='The forms are empty. Fill in the forms!!';
             return $valid;
-        }elseif($_POST['email'] !== ""){
+        }/*elseif($_POST['email'] !== ""){
             $success = false;
             foreach($validEmailExtention as $value){
                 if(strpos($email,$value)>-1){
@@ -86,7 +86,13 @@ function emptyCheck($email){
                 $valid['error']='Wrong email input';
                 return $valid;
             }
-        }else{
+        }*/
+        elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $valid['bool']= false;
+            $valid['error']='Wrong email input';
+            return $valid;
+          }
+        else{
             $valid['bool']= true;
             $valid['error']='successfull';
             return $valid;
