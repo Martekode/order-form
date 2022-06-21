@@ -57,16 +57,40 @@ $totalValue = 0;
 #}
 #
 $valid = [];
-function emptyCheck(){
+function emptyCheck($email){
     var_dump($_POST);
+    $validEmailExtention = [".com",".be",".org"];
+    $emailMustContain = ["@hotmail","@yahoo","@outlook","@becode"];
     foreach($_POST as $key => $value){
         if($value == ""){
             $valid['bool']=false;
             $valid['error']='The forms are empty. Fill in the forms!!';
             return $valid;
+        }elseif($_POST['email'] !== ""){
+            $count =0;
+            $success = false;
+            foreach($validEmailExtention as $value){
+                $count++;
+                if(strpos($email,$value)>-1){
+                    $success = true;
+                }
+            }
+            if($success == true){
+                foreach($emailMustContain as $containValue){
+                    if(strpos($email,$containValue)>-1){
+                        $valid['bool']= true;
+                        $valid['error']='successfull';
+                        return $valid;
+                    }
+                }
+            }else{
+                $valid['bool']= false;
+                $valid['error']='Wrong email input';
+                return $valid;
+            }
         }else{
             $valid['bool']= true;
-            $valid['error']='succesfull';
+            $valid['error']='successfull';
             return $valid;
         }
     }
@@ -81,7 +105,8 @@ function isValid($validator){
         }
         unset($shipmentArray['btn']);
         return $shipmentArray;
-    }else{
+    }
+    elseif(!$validator){
         $shipmentArray['select your items']='and fill in the form';
         return $shipmentArray;
     }
@@ -99,7 +124,7 @@ function priceCalc($array,$prod){
 }
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
-    $valid = emptyCheck();
+    $valid = emptyCheck($_POST['email']);
     $orderData = isValid($valid['bool']);
     $price = priceCalc($orderData['products'],$products);
 }
