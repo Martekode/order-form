@@ -56,17 +56,17 @@ $totalValue = 0;
 #    handleForm();
 #}
 #
-bool: $valid = false;
-
+$valid = [];
 function emptyCheck(){
     var_dump($_POST);
     foreach($_POST as $key => $value){
         if($value == ""){
-            $valid = false;
-            echo "fill in the forms!!";
+            $valid['bool']=false;
+            $valid['error']='The forms are empty. Fill in the forms!!';
             return $valid;
         }else{
-            $valid= true;
+            $valid['bool']= true;
+            $valid['error']='succesfull';
             return $valid;
         }
     }
@@ -100,7 +100,7 @@ function priceCalc($array,$prod){
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
     $valid = emptyCheck();
-    $orderData = isValid($valid);
+    $orderData = isValid($valid['bool']);
     $price = priceCalc($orderData['products'],$products);
 }
 require 'form-view.php';

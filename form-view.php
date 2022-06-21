@@ -74,22 +74,27 @@
         </fieldset>
 
         <button name="btn" type="submit" class="btn btn-primary">Order!</button>
-        <p><?php if(isset($_POST['btn'])){if($valid){echo "succes";}else{echo "fill in the forms";}}?></p>
+        <div class="alert <?php if(isset($_POST['btn'])){ if($valid['bool']){echo "alert-success";}else{echo "alert-danger";}} ?> alert-dismissible fade show" role="alert">
+            <strong><?php if(isset($_POST['btn'])){if($valid['bool']){echo $valid['error'];}elseif(!$valid['bool']){echo $valid['error'];}}?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </form>
-    <div class="col-md-6">
+    <div class="receit col-md-6" style="text-align:center; width:90%; margin-inline:auto;">
         <h2>Your Address:</h2>
 
-        <p><em style="font-weight:bold;">Email: </em><?php if(isset($_POST['btn'])){if($valid){echo $orderData['email'];} }?></p>
-        <p><em style="font-weight:bold;">Street: </em><?php if(isset($_POST['btn'])){if($valid){echo $orderData['street'] . ", ". $orderData['streetnumber'];}}?></p>
-        <p><em style="font-weight:bold;">City: </em><?php if(isset($_POST['btn'])){if($valid){echo $orderData['city'] . ", " . $orderData['zipcode'];}}?></p>
+        <p><em style="font-weight:bold;">Email: </em><?php if(isset($_POST['btn'])){if($valid['bool']){echo $orderData['email'];} }?></p>
+        <p><em style="font-weight:bold;">Street: </em><?php if(isset($_POST['btn'])){if($valid['bool']){echo $orderData['street'] . ", ". $orderData['streetnumber'];}}?></p>
+        <p><em style="font-weight:bold;">City: </em><?php if(isset($_POST['btn'])){if($valid['bool']){echo $orderData['city'] . ", " . $orderData['zipcode'];}}?></p>
         <h2>Your selected items:</h1>
         <ul>
-            <?php if(isset($_POST['btn'])){if($valid){foreach ($orderData['products'] as $i => $order): ?>
+            <?php if(isset($_POST['btn'])){if($valid['bool']){foreach ($orderData['products'] as $i => $order): ?>
                 <li><?php echo $order;?></li>
             <?php endforeach;}} ?>
             
         </ul>
-        <h1 style="color:green;">€ <?php if(isset($_POST['btn'])){if($valid){echo $price;}}?></h1>
+        <h1 style="color:green;">€ <?php if(isset($_POST['btn'])){if($valid['bool']){echo $price;}}?></h1>
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>
