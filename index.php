@@ -57,7 +57,8 @@ $totalValue = 0;
 #}
 #
 $valid = [];
-function emptyCheck($email){
+$valid['bool']=false;
+function emptyCheck($email,$city,$street,$number,$zipcode){
     var_dump($_POST);
     #$validEmailExtention = [".com",".be",".org"];
     #$emailMustContain = ["@hotmail","@yahoo","@outlook","@becode"];
@@ -65,6 +66,11 @@ function emptyCheck($email){
         if($value == ""){
             $valid['bool']=false;
             $valid['error']='The forms are empty. Fill in the forms!!';
+            $valid['emailPlaceholder']="wrong input";
+            $valid['streetPlaceholder']="wrong input";
+            $valid['cityPlaceholder']="wrong input";
+            $valid['numberPlaceholder']="wrong input";
+            $valid['zipcodePlaceholder']="wrong input";
             return $valid;
         }/*elseif($_POST['email'] !== ""){
             $success = false;
@@ -90,11 +96,32 @@ function emptyCheck($email){
         elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $valid['bool']= false;
             $valid['error']='Wrong email input';
+            $valid['emailPlaceholder']="wrong input";
+            $valid['streetPlaceholder']=$street;
+            $valid['cityPlaceholder']=$city;
+            $valid['numberPlaceholder']=$number;
+            $valid['zipcodePlaceholder']=$zipcode;
             return $valid;
           }
+        elseif(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $valid['bool']= true;
+            $valid['error']='Successfull';
+            $valid['emailPlaceholder']=$email;
+            $valid['streetPlaceholder']=$street;
+            $valid['cityPlaceholder']=$city;
+            $valid['numberPlaceholder']=$number;
+            $valid['zipcodePlaceholder']=$zipcode;
+            return $valid;
+        }
         else{
             $valid['bool']= true;
             $valid['error']='successfull';
+            $valid['emailPlaceholder']=$email;
+            $valid['streetPlaceholder']=$street;
+            $valid['cityPlaceholder']=$city;
+            $valid['numberPlaceholder']=$number;
+            $valid['zipcodePlaceholder']=$zipcode;
+
             return $valid;
         }
     }
@@ -128,7 +155,7 @@ function priceCalc($array,$prod){
 }
 if(isset($_POST['btn'])) {
     $_POST['btn'] = "clicked";
-    $valid = emptyCheck($_POST['email']);
+    $valid = emptyCheck($_POST['email'],$_POST['city'],$_POST['street'],$_POST['streetnumber'],$_POST['zipcode']);
     $orderData = isValid($valid['bool']);
     $price = priceCalc($orderData['products'],$products);
 }
