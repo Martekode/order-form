@@ -72,6 +72,15 @@ function emptyCheck($email,$city,$street,$number,$zipcode){
             $valid['numberPlaceholder']="wrong input";
             $valid['zipcodePlaceholder']="wrong input";
             return $valid;
+        }elseif(!is_numeric($zipcode)){
+            $valid['bool']=false;
+            $valid['error']='wrong zipcode input';
+            $valid['emailPlaceholder']=$email;
+            $valid['streetPlaceholder']=$street;
+            $valid['cityPlaceholder']=$city;
+            $valid['numberPlaceholder']=$number;
+            $valid['zipcodePlaceholder']="wrong input";
+            return $valid;
         }/*elseif($_POST['email'] !== ""){
             $success = false;
             foreach($validEmailExtention as $value){
