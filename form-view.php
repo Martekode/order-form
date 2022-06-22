@@ -95,6 +95,9 @@
             
         </ul>
         <h1 style="color:green;">€ <?php if(isset($_POST['btn'])){if($valid['bool']){echo $price;}}?></h1>
+        <form method="post">
+            <button style="width:20%;" name="btn1" type="submit" class="btn btn-success">Confirm!</button>
+        </form>
     </div>
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>

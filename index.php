@@ -162,10 +162,22 @@ function priceCalc($array,$prod){
     $price = 0;
     return $price;
 }
-if(isset($_POST['btn'])) {
+function sessionData($posted){
+    $session = [];
+    $session = $posted;
+    return $session;
+        
+}
+if(isset($_POST['btn'])){
     $_POST['btn'] = "clicked";
     $valid = emptyCheck($_POST['email'],$_POST['city'],$_POST['street'],$_POST['streetnumber'],$_POST['zipcode']);
     $orderData = isValid($valid['bool']);
     $price = priceCalc($orderData['products'],$products);
+    $_SESSION = sessionData($orderData);
+    echo "SESSION_DATA";
+    var_dump($_SESSION);
+}
+if(isset($_POST['btn1'])){
+  
 }
 require 'form-view.php';
